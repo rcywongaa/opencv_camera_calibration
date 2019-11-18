@@ -85,6 +85,7 @@ int main(int argc, char** argv)
         double rms = calibrateCamera(true_intersections_per_mat, found_corners_per_mat, num_intersections, camera_matrix, distance_coefficients, rVectors, tVectors);
 
         cout << "Camera matrix = " << endl << camera_matrix << endl;
+        cout << "distance_coefficients = " << endl << distance_coefficients << endl;
         printf("rms error = %f\n", rms);
         printf("Focal length (in pixels) = (%f, %f)\n", camera_matrix.at<double>(0, 0), camera_matrix.at<double>(1, 1));
         printf("Optical center (in pixels) = (%f, %f)\n", camera_matrix.at<double>(0, 2), camera_matrix.at<double>(1, 2));
