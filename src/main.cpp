@@ -66,7 +66,7 @@ int main(int argc, char** argv)
         frame.copyTo(corners_frame);
         drawChessboardCorners(corners_frame, num_intersections, corners, is_found);
         imshow("found corners", corners_frame);
-        if (is_found) waitKey(1000);
+        if (is_found) waitKey(500);
         else waitKey(1);
     }
 
