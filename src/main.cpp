@@ -1,6 +1,6 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/calib3d.hpp"
-#include <signal.h>
+#include <csignal>
 #include <unistd.h>
 
 using namespace std;
@@ -8,6 +8,8 @@ using namespace cv;
 
 const float square_size_m = 0.01905;
 const Size num_intersections = Size(6, 9); //horizontal intersections, vertical intersections
+const int WIDTH = 1600;
+const int HEIGHT = 1200;
 
 bool isContinue = true;
 
@@ -42,6 +44,9 @@ int main(int argc, char** argv)
         cap.open(0);
     }
 
+    cap.set(CV_CAP_PROP_FRAME_WIDTH, WIDTH);
+    cap.set(CV_CAP_PROP_FRAME_HEIGHT, HEIGHT);
+
     vector<Mat> found_chessboards;
     vector<vector<Point2f>> found_corners_per_mat;
 
@@ -56,7 +61,7 @@ int main(int argc, char** argv)
         {
             //found_chessboards.push_back(frame);
             found_corners_per_mat.push_back(corners);
-            printf("num of samples: %d\n", found_corners_per_mat.size());
+            printf("num of samples: %ld\n", found_corners_per_mat.size());
         }
         frame.copyTo(corners_frame);
         drawChessboardCorners(corners_frame, num_intersections, corners, is_found);
