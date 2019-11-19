@@ -79,13 +79,13 @@ int main(int argc, char** argv)
         true_intersections_per_mat.resize(found_corners_per_mat.size(), true_intersections_per_mat[0]);
 
         vector<Mat> rVectors, tVectors;
-        Mat distance_coefficients = Mat::zeros(8, 1, CV_64F);
+        Mat distortion_coefficients = Mat::zeros(8, 1, CV_64F);
         Mat camera_matrix = Mat::eye(3, 3, CV_64F);
 
-        double rms = calibrateCamera(true_intersections_per_mat, found_corners_per_mat, num_intersections, camera_matrix, distance_coefficients, rVectors, tVectors);
+        double rms = calibrateCamera(true_intersections_per_mat, found_corners_per_mat, num_intersections, camera_matrix, distortion_coefficients, rVectors, tVectors);
 
         cout << "Camera matrix = " << endl << camera_matrix << endl;
-        cout << "distance_coefficients = " << endl << distance_coefficients << endl;
+        cout << "distortion_coefficients = " << endl << distortion_coefficients << endl;
         printf("rms error = %f\n", rms);
         printf("Focal length (in pixels) = (%f, %f)\n", camera_matrix.at<double>(0, 0), camera_matrix.at<double>(1, 1));
         printf("Optical center (in pixels) = (%f, %f)\n", camera_matrix.at<double>(0, 2), camera_matrix.at<double>(1, 2));
